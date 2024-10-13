@@ -10,8 +10,6 @@ import { useNavigate } from 'react-router-dom';
 import {
   HiOutlineEye,
 } from 'react-icons/hi2';
-import toast from 'react-hot-toast';
-import {MdBlock} from "react-icons/md";
 
 interface DataTableProps {
   columns: GridColDef[];

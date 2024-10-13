@@ -1,16 +1,7 @@
 // import toast from 'react-hot-toast';
 import {
   HiOutlineHome,
-  HiOutlineUser,
   HiOutlineUsers,
-  HiOutlineCube,
-  HiOutlineClipboardDocumentList,
-  HiOutlineDocumentChartBar,
-  HiOutlinePencilSquare,
-  HiOutlineCalendarDays,
-  HiOutlinePresentationChartBar,
-  HiOutlineDocumentText,
-  HiOutlineArrowLeftOnRectangle,
 } from 'react-icons/hi2';
 // import { IoSettingsOutline } from 'react-icons/io5';
 

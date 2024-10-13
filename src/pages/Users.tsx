@@ -6,7 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import AddData from '../components/AddData';
 import {FcCheckmark} from "react-icons/fc";
-import {FaRegTimesCircle, FaTimes} from "react-icons/fa";
+import {FaTimes} from "react-icons/fa";
 import axiosInstance from "../api/axiosInstance";
 
 const Users = () => {

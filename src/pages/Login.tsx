@@ -1,6 +1,5 @@
 // import React from 'react';
 import ChangeThemes from '../components/ChangesThemes';
-import {DiReact} from 'react-icons/di';
 import {useNavigate} from 'react-router-dom';
 import {useEffect} from "react";
 import {Formik} from "formik";

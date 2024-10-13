@@ -23,7 +23,7 @@ export const fetchUsers = async () => {
   const response = await axiosInstance
     .get('admin/users/list?page=1&limit=100')
     .then((res) => {
-      res.data.users.users.map((r)=>{
+      res.data.users.users.map((r: any)=>{
           r['id'] = r['_id'];
           delete r['_id'];
       })

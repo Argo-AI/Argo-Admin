@@ -18,7 +18,6 @@ const Home = () => {
   const [users,setUsers] = useState({
     data: {
       color: 'gold',
-      title: 'Total Users',
       number: '2.6',
       dataKey: 'ratio',
       percentage: 10,
@@ -38,7 +37,6 @@ const Home = () => {
   const [activeUsers,setActiveUsers] = useState({
     data: {
       color: 'gold',
-      title: 'Total Users',
       number: '2.6',
       dataKey: 'ratio',
       percentage: 50,
@@ -58,7 +56,6 @@ const Home = () => {
   const [inactiveUsers,setInActiveUsers] = useState({
     data: {
       color: 'gold',
-      title: 'Total Users',
       number: '2.6',
       dataKey: 'ratio',
       percentage: 50,
@@ -82,7 +79,7 @@ const Home = () => {
      if(!localStorage.getItem('user')){
        navigate('/login');
      }
-     const user = JSON.parse(localStorage.getItem('user'));
+     const user = localStorage.getItem('user') ?  JSON.parse(localStorage.getItem('user') || '{}') : null;
      if(user){
        getDashboardCount();
      }
@@ -95,16 +92,15 @@ const Home = () => {
         ...users,
         data: {
           ...users.data,
-          number: res?.data?.data?.totalUsers
+          number: res?.data?.data?.nonAdminUsers
         },
         isLoading: false
       })
-      const _total: number = res?.data?.data?.totalUsers;
       setActiveUsers({
         ...activeUsers,
         data: {
           ...activeUsers.data,
-          number:_total / 2
+          number:res?.data?.data?.activeUsers
         },
         isLoading: false
       })
@@ -112,7 +108,7 @@ const Home = () => {
         ...inactiveUsers,
         data: {
           ...inactiveUsers.data,
-          number:_total / 2
+          number:res?.data?.data?.inActiveUsers
         },
         isLoading: false
       })
@@ -120,27 +116,6 @@ const Home = () => {
     }).catch((err)=>{
       toast(err?.message);
     })
-  };
-
-  const queryGetTotalInActiveUsers  = {
-    data: {
-      color: 'gold',
-      title: 'InActive Users',
-      number: '1.0',
-      dataKey: 'ratio',
-      percentage: 12,
-      chartData: [
-        {name: 'Sun', ratio: 200},
-        {name: 'Mon', ratio: 300},
-        {name: 'Tue', ratio: 100},
-        {name: 'Wed', ratio: 200},
-        {name: 'Thu', ratio: 300},
-        {name: 'Fri', ratio: 100},
-        {name: 'Sat', ratio: 250},
-      ],
-    },
-    isLoading: false,
-    isSuccess: true,
   };
 
 
