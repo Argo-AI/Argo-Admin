@@ -27,7 +27,7 @@ const Navbar = () => {
     if (isFullScreen && document && document.fullscreenElement) {
       document.exitFullscreen();
     } else {
-      //element?.requestFullscreen({ navigationUI: 'auto' });
+      element?.requestFullscreen({ navigationUI: 'auto' });
     }
   }, [element, isFullScreen]);
 

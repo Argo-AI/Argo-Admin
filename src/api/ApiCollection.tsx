@@ -37,6 +37,27 @@ export const fetchUsers = async () => {
   return response;
 };
 
+export const fetchAllPosts = async () => {
+    const response = await axiosInstance
+        .get('admin/posts/list')
+        .then((res) => {
+            res.data.posts.map((r: any)=>{
+                r['id'] = r['_id'];
+                r['visibility'] = 'Public';
+                r['tags'] = r.taggedUserDetails;
+                delete r['_id'];
+            })
+            return res.data.posts;
+        })
+        .catch((err) => {
+            console.log(err);
+            throw err;
+        });
+
+    return response;
+};
+
+
 // GET SINGLE USER
 export const fetchSingleUser = async (id: string) => {
   const response = await axios

@@ -2,6 +2,7 @@ import axios from 'axios';
 
 //
 export const BASEURL = 'https://api-argotest.zapto.org:3000';
+export const IMAGE_BASE_URL = 'https://storage.googleapis.com/qq_argo_test_bucket/';
 
 const service = axios.create({
   baseURL: BASEURL,

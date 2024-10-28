@@ -1,5 +1,6 @@
 // import toast from 'react-hot-toast';
 import {
+  HiOutlineDocumentChartBar,
   HiOutlineHome,
   HiOutlineUsers,
 } from 'react-icons/hi2';
@@ -44,12 +45,12 @@ export const menu = [
       //   icon: HiOutlineClipboardDocumentList,
       //   label: 'orders',
       // },
-      // {
-      //   isLink: true,
-      //   url: '/posts',
-      //   icon: HiOutlineDocumentChartBar,
-      //   label: 'posts',
-      // },
+      {
+        isLink: true,
+        url: '/posts',
+        icon: HiOutlineDocumentChartBar,
+        label: 'posts',
+      },
     ],
   },
   // {

@@ -4,24 +4,26 @@ import DataTable from '../components/DataTable';
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 // import AddData from '../components/AddData';
-import { fetchPosts } from '../api/ApiCollection';
+import {fetchAllPosts} from '../api/ApiCollection';
 import {
   HiOutlineGlobeAmericas,
   HiOutlineLockClosed,
 } from 'react-icons/hi2';
+import axiosInstance, {IMAGE_BASE_URL} from "../api/axiosInstance";
+import {FcCheckmark} from "react-icons/fc";
+import {FaTimes} from "react-icons/fa";
 
 const Posts = () => {
   // const [isOpen, setIsOpen] = React.useState(false);
   const { isLoading, isError, isSuccess, data } = useQuery({
-    queryKey: ['allorders'],
-    queryFn: fetchPosts,
+    queryKey: ['posts'],
+    queryFn: fetchAllPosts,
   });
 
   const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', minWidth: 90 },
     {
-      field: 'title',
-      headerName: 'Title',
+      field: 'text',
+      headerName: 'Content',
       minWidth: 500,
       flex: 1,
       renderCell: (params) => {
@@ -30,7 +32,7 @@ const Posts = () => {
             <div className="w-20 h-12 sm:w-24 sm:h-14 xl:w-32 xl:h-[72px] rounded relative overflow-hidden">
               <img
                 src={
-                  params.row.thumbnail ||
+                  params.row.media?.[0]?.url ? IMAGE_BASE_URL + params.row.media?.[0]?.url :
                   'https://placehold.co/720x400'
                 }
                 alt="thumbnail-picture"
@@ -40,13 +42,8 @@ const Posts = () => {
             <div className="flex flex-col items-start gap-0">
               <div className="relative w-[300px] xl:w-[320px] overflow-hidden text-ellipsis whitespace-nowrap">
                 <span className="text-ellipsis whitespace-nowrap text-base font-medium dark:text-white">
-                  {params.row.title}
+                  {params.row.text}
                 </span>
-              </div>
-              <div className="relative w-[300px] xl:w-[320px] overflow-hidden ">
-                <p className="text-[14px] leading-[1.1] overflow-hidden line-clamp-2 text-neutral-400">
-                  {params.row.desc}
-                </p>
               </div>
             </div>
           </div>
@@ -54,31 +51,9 @@ const Posts = () => {
       },
     },
     {
-      field: 'tags',
-      // type: 'string',
-      headerName: 'Tags',
-      minWidth: 250,
-      flex: 1,
-      renderCell: (params) => {
-        return (
-          <div className="flex flex-wrap gap-1">
-            {params.row.tags &&
-              params.row.tags.map((tag: string, index: number) => (
-                <div
-                  className="rounded-full bg-base-200 dark:bg-base-300 flex justify-center items-center px-3 py-1 text-xs"
-                  key={index}
-                >
-                  {tag}
-                </div>
-              ))}
-          </div>
-        );
-      },
-    },
-    {
       field: 'author',
       headerName: 'Author',
-      minWidth: 220,
+      minWidth: 140,
       flex: 1,
       renderCell: (params) => {
         return (
@@ -87,23 +62,57 @@ const Posts = () => {
               <div className="w-6 xl:w-9 rounded-full">
                 <img
                   src={
-                    params.row.avatar || '/Portrait_Placeholder.png'
+                    params.row.userDetails?.profilePicture ?  IMAGE_BASE_URL + params.row.userDetails?.profilePicture  : '/Portrait_Placeholder.png'
                   }
                   alt="user-picture"
                 />
               </div>
             </div>
             <span className="mb-0 pb-0 leading-none">
-              {params.row.author}
+              @{params.row.userDetails?.userName}
             </span>
           </div>
         );
       },
     },
     {
+      field: 'status',
+      headerName: 'Status',
+      minWidth: 90,
+      flex: 1,
+      renderCell: (params) => {
+        return      <div onClick={()=>{
+          if(confirm(params?.row?.status == 'active' ? 'Are you sure you want to Deactivate?' : 'Are you sure you want to Activate?')){
+
+
+            axiosInstance.patch(`admin/posts/status`,{
+              postId: params?.row?.id,
+              status: params?.row.status == 'active' ? 'blocked' : 'active'
+            }).then((res)=>{
+
+              console.log("here",res);
+              toast(`Successfully ${params?.row?.status == 'active' ? 'deactivated' : 'activated'} posts`);
+
+              setTimeout(()=>{
+                location.reload();
+              },1000);
+
+            }).catch((err)=>{
+              toast(err?.message);
+            })
+          }
+
+        }} className="flex gap-3 items-center cursor-pointer">
+              <span className={`mb-0 pb-0`}>
+              {params.row.status == 'active' ? <FcCheckmark /> : <FaTimes className={`text-[#ff0000]`} />}
+            </span>
+        </div>
+      },
+    },
+    {
       field: 'visibility',
       headerName: 'Visibility',
-      minWidth: 100,
+      minWidth: 90,
       flex: 1,
       renderCell: (params) => {
         if (params.row.visibility == 'Public') {
@@ -130,36 +139,45 @@ const Posts = () => {
       },
     },
     {
-      field: 'date',
+      field: 'createdAt',
       type: 'string',
       headerName: 'Date',
-      minWidth: 100,
-    },
-    {
-      field: 'views',
-      type: 'number',
-      headerName: 'Views',
-      minWidth: 120,
-    },
-    {
-      field: 'comments',
-      type: 'number',
-      headerName: 'Comments',
-      minWidth: 120,
+      minWidth: 140,
       renderCell: (params) => {
         return (
-          <div>
-            {params.row.comments && params.row.comments.length}
-          </div>
+            <div className="flex gap-3 items-center">
+              <span className="mb-0 pb-0 leading-none">
+              {new Date(params.row.createdAt).toUTCString()}
+            </span>
+            </div>
         );
       },
     },
-    {
-      field: 'likes',
-      type: 'number',
-      headerName: 'Likes',
-      minWidth: 80,
-    },
+    // {
+    //   field: 'views',
+    //   type: 'number',
+    //   headerName: 'Views',
+    //   minWidth: 120,
+    // },
+    // {
+    //   field: 'comments',
+    //   type: 'number',
+    //   headerName: 'Comments',
+    //   minWidth: 120,
+    //   renderCell: (params) => {
+    //     return (
+    //       <div>
+    //         {params.row.comments && params.row.comments.length}
+    //       </div>
+    //     );
+    //   },
+    // },
+    // {
+    //   field: 'likes',
+    //   type: 'number',
+    //   headerName: 'Likes',
+    //   minWidth: 80,
+    // },
   ];
 
   React.useEffect(() => {
