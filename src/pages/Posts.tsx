@@ -76,6 +76,12 @@ const Posts = () => {
       },
     },
     {
+      field: 'reportCount',
+      headerName: 'Reported By',
+      minWidth: 90,
+      flex: 1,
+    },
+    {
       field: 'status',
       headerName: 'Status',
       minWidth: 90,
