@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 import AddData from '../components/AddData';
 import {FcCheckmark} from "react-icons/fc";
 import {FaTimes} from "react-icons/fa";
-import axiosInstance from "../api/axiosInstance";
+import axiosInstance, {IMAGE_BASE_URL} from "../api/axiosInstance";
 
 const Users = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -30,8 +30,11 @@ const Users = () => {
             <div className="avatar">
               <div className="w-6 xl:w-9 rounded-full">
                 <img
-                  src={params.row.img || '/Portrait_Placeholder.png'}
+                  src={IMAGE_BASE_URL + params.row.profilePicture || '/Portrait_Placeholder.png'}
                   alt="user-picture"
+                  onError={(e) => {
+                    e.currentTarget.src = '/Portrait_Placeholder.png';
+                  }}
                 />
               </div>
             </div>
