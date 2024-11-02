@@ -57,14 +57,14 @@ const Users = () => {
       flex: 1,
     },
     {
-      field: 'phone',
+      field: 'provider',
       type: 'string',
       headerName: 'Phone',
       minWidth: 120,
       flex: 1,
     },
     {
-      field: 'created_at',
+      field: 'updatedAt',
       headerName: 'Created At',
       minWidth: 100,
       type: 'string',
@@ -73,7 +73,7 @@ const Users = () => {
         return (
             <div className="flex gap-3 items-center">
               <span className="mb-0 pb-0 leading-none">
-              {new Date(params.row.created_at).toLocaleDateString()}
+              {new Date(params.row.updatedAt).toLocaleDateString()}
             </span>
             </div>
         );
