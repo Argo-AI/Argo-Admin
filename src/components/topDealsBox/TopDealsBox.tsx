@@ -21,7 +21,7 @@ const TopDealsBox = () => {
   return (
     <div className="w-full p-0 m-0 flex flex-col items-stretch gap-6 xl:gap-4 2xl:gap-9">
       <span className="text-2xl xl:text-2xl 2xl:text-4xl font-bold">
-        Upcoming Posts
+        Latest Posts
       </span>
       <div className="w-full flex flex-col items-stretch gap-3">
         {isLoading &&
