@@ -2,17 +2,10 @@
 import toast from 'react-hot-toast';
 // import { topDealUsers } from './data';
 import { useQuery } from '@tanstack/react-query';
-import {fetchAllPosts, fetchTopDeals} from '../../api/ApiCollection';
+import {fetchAllPosts} from '../../api/ApiCollection';
 import {FaRegThumbsUp} from "react-icons/fa";
 import {IMAGE_BASE_URL} from "../../api/axiosInstance";
 
-interface topDealsUser {
-  id: number;
-  img: string;
-  username: string;
-  email: string;
-  amount: string;
-}
 
 const TopDealsBox = () => {
   const tempTotalEntries = [1, 2, 3, 4, 5, 6, 7];
