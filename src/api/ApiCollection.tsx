@@ -39,7 +39,7 @@ export const fetchUsers = async () => {
 
 export const fetchAllPosts = async () => {
     const response = await axiosInstance
-        .get('admin/posts/list')
+        .get('admin/posts/list?limit=100')
         .then((res) => {
             res.data.posts.map((r: any)=>{
                 r['id'] = r['_id'];

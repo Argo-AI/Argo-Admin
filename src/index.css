@@ -122,3 +122,17 @@
     content: "";
     @apply absolute left-[50%] bottom-0 w-[10px] h-[10px] rounded-full bg-primary -translate-x-[50%]
 }
+
+.truncate-desc {
+    width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.truncate {
+    width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

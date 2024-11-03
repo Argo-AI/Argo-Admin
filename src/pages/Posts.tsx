@@ -24,7 +24,7 @@ const Posts = () => {
     {
       field: 'text',
       headerName: 'Content',
-      minWidth: 500,
+      minWidth: 300,
       flex: 1,
       renderCell: (params) => {
         return (
@@ -40,8 +40,8 @@ const Posts = () => {
               />
             </div>
             <div className="flex flex-col items-start gap-0">
-              <div className="relative w-[300px] xl:w-[320px] overflow-hidden text-ellipsis whitespace-nowrap">
-                <span className="text-ellipsis whitespace-nowrap text-base font-medium dark:text-white">
+              <div className="relative truncate-desc overflow-hidden text-ellipsis whitespace-nowrap">
+                <span className="text-ellipsis whitespace-nowrap text-base font-medium dark:text-white ">
                   {params.row.text}
                 </span>
               </div>
@@ -53,7 +53,7 @@ const Posts = () => {
     {
       field: 'author',
       headerName: 'Author',
-      minWidth: 140,
+      minWidth: 240,
       flex: 1,
       renderCell: (params) => {
         return (
@@ -68,7 +68,7 @@ const Posts = () => {
                 />
               </div>
             </div>
-            <span className="mb-0 pb-0 leading-none">
+            <span className="mb-0 pb-0 leading-none truncate">
               @{params.row.userDetails?.userName}
             </span>
           </div>
