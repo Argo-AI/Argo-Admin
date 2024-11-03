@@ -2,8 +2,9 @@
 import toast from 'react-hot-toast';
 // import { topDealUsers } from './data';
 import { useQuery } from '@tanstack/react-query';
-import { fetchTopDeals } from '../../api/ApiCollection';
+import {fetchAllPosts, fetchTopDeals} from '../../api/ApiCollection';
 import {FaRegThumbsUp} from "react-icons/fa";
+import {IMAGE_BASE_URL} from "../../api/axiosInstance";
 
 interface topDealsUser {
   id: number;
@@ -16,15 +17,18 @@ interface topDealsUser {
 const TopDealsBox = () => {
   const tempTotalEntries = [1, 2, 3, 4, 5, 6, 7];
 
-  const { isLoading, isSuccess, data } = useQuery({
-    queryKey: ['topdeals'],
-    queryFn: fetchTopDeals,
-  });
+
+    const { isLoading, isSuccess, data } = useQuery({
+        queryKey: ['posts'],
+        queryFn: fetchAllPosts,
+    });
+
+
 
   return (
     <div className="w-full p-0 m-0 flex flex-col items-stretch gap-6 xl:gap-4 2xl:gap-9">
       <span className="text-2xl xl:text-2xl 2xl:text-4xl font-bold">
-        Top Trending Posts
+        Upcoming Posts
       </span>
       <div className="w-full flex flex-col items-stretch gap-3">
         {isLoading &&
@@ -44,7 +48,7 @@ const TopDealsBox = () => {
             </div>
           ))}
         {isSuccess &&
-          data.map((user: topDealsUser, index: number) => (
+          data.filter((d)=> d.likes > 0).map((user, index: number) => (
             <button
               onClick={() => toast('Gabisa!', { icon: '😠' })}
               key={index}
@@ -53,20 +57,22 @@ const TopDealsBox = () => {
               <div className="flex gap-3 2xl:gap-4 items-center">
                 <div className="avatar">
                   <div className="w-11 xl:w-8 2xl:w-16 3xl:w-20 rounded-full">
-                    <img src={user.img} alt={`user${index}`} />
+                    <img
+                        src={
+                            user.media?.[0]?.url ? IMAGE_BASE_URL + user.media?.[0]?.url :
+                                'https://placehold.co/720x400'
+                        }
+                        alt={`user${index}`} />
                   </div>
                 </div>
                 <div className="flex flex-col items-start gap-1">
                   <span className="text-sm xl:text-[13px] 2xl:text-lg 3xl:text-xl m-0 p-0">
-                    {user.username}
-                  </span>
-                  <span className="text-xs xl:text-[10px] 2xl:text-sm 3xl:text-base">
-                    {user.email}
+                    {user.userDetails?.userName}
                   </span>
                 </div>
               </div>
               <span className="font-semibold text-lg xl:text-base 2xl:text-lg 3xl:text-xl flex items-center">
-                <FaRegThumbsUp />&nbsp;3000
+                <FaRegThumbsUp />&nbsp;{user.likes}
               </span>
             </button>
           ))}
