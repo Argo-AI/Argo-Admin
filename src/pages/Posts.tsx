@@ -30,14 +30,22 @@ const Posts = () => {
         return (
           <div className="flex gap-3 relative items-center py-2">
             <div className="w-20 h-12 sm:w-24 sm:h-14 xl:w-32 xl:h-[72px] rounded relative overflow-hidden">
-              <img
-                src={
-                  params.row.media?.[0]?.url ? IMAGE_BASE_URL + params.row.media?.[0]?.url :
-                  'https://placehold.co/720x400'
-                }
-                alt="thumbnail-picture"
-                className="object-cover w-full h-full"
-              />
+              {params.row.media?.[0]?.type === 'vom' ? (
+
+                <audio controls>
+                  <source src={IMAGE_BASE_URL + params.row.media?.[0]?.url} type="audio/mp3"/>
+                </audio>
+
+              ) : (
+                <img
+                  src={
+                    params.row.media?.[0]?.url ? IMAGE_BASE_URL + params.row.media?.[0]?.url :
+                    'https://placehold.co/720x400'
+                  }
+                  alt="thumbnail-picture"
+                  className="object-cover w-full h-full"
+                />
+              )}
             </div>
             <div className="flex flex-col items-start gap-0">
               <div className="relative truncate-desc overflow-hidden text-ellipsis whitespace-nowrap">
