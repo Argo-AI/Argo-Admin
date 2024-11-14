@@ -36,6 +36,10 @@ const Posts = () => {
                   <source src={IMAGE_BASE_URL + params.row.media?.[0]?.url} type="audio/mp3"/>
                 </audio>
 
+              ) : params.row.media?.[0]?.type === 'video' ? (
+                <video controls>
+                  <source src={IMAGE_BASE_URL + params.row.media?.[0]?.url} type="video/mp4"/>
+                </video>
               ) : (
                 <img
                   src={
