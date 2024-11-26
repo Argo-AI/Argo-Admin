@@ -24,6 +24,8 @@ import EditProfile from './pages/EditProfile';
 import User from './pages/User';
 import Product from './pages/Product';
 import Login from './pages/Login';
+import Upload from './pages/Upload';
+
 
 function App() {
   const Layout = () => {
@@ -106,6 +108,10 @@ function App() {
         {
           path: '/logs',
           element: <Logs />,
+        },
+        {
+          path: '/upload',
+          element: <Upload />,
         },
       ],
       errorElement: <Error />,
