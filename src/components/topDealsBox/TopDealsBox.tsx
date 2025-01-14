@@ -41,7 +41,7 @@ const TopDealsBox = () => {
             </div>
           ))}
         {isSuccess &&
-          data.filter((d)=> d.likes > 0).map((user, index: number) => (
+          data.splice(0, 15).filter((d)=> d.likes > 0).map((user, index: number) => (
             <button
               onClick={() => toast('Gabisa!', { icon: '😠' })}
               key={index}

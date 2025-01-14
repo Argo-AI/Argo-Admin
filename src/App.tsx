@@ -7,13 +7,12 @@ import {
 } from 'react-router-dom';
 import Home from './pages/Home';
 import Users from './pages/Users';
-import Products from './pages/Products';
+import Stories from './pages/Stories';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Menu from './components/menu/Menu';
 import Error from './pages/Error';
 import Profile from './pages/Profile';
-import Orders from './pages/Orders';
 import Posts from './pages/Posts';
 import Notes from './pages/Notes';
 import Calendar from './pages/Calendar';
@@ -22,8 +21,9 @@ import Logs from './pages/Logs';
 import ToasterProvider from './components/ToasterProvider';
 import EditProfile from './pages/EditProfile';
 import User from './pages/User';
-import Product from './pages/Product';
 import Login from './pages/Login';
+import Terms from './pages/Terms';
+import Privacy from './pages/Privacy';
 
 function App() {
   const Layout = () => {
@@ -76,36 +76,24 @@ function App() {
           element: <User />,
         },
         {
-          path: '/products',
-          element: <Products />,
-        },
-        {
-          path: '/products/:id',
-          element: <Product />,
-        },
-        {
-          path: '/orders',
-          element: <Orders />,
-        },
-        {
           path: '/posts',
           element: <Posts />,
         },
         {
+          path: '/stories',
+          element: <Stories />,
+        },
+        {
+          path: '/terms',
+          element: <Terms />,
+        },
+        {
+          path: '/privacy',
+          element: <Privacy />,
+        },
+        {
           path: '/notes',
           element: <Notes />,
-        },
-        {
-          path: '/calendar',
-          element: <Calendar />,
-        },
-        {
-          path: '/charts',
-          element: <Charts />,
-        },
-        {
-          path: '/logs',
-          element: <Logs />,
         },
       ],
       errorElement: <Error />,

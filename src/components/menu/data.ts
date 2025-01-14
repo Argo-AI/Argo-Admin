@@ -4,7 +4,9 @@ import {
   HiOutlineHome,
   HiOutlineUsers,
 } from 'react-icons/hi2';
-// import { IoSettingsOutline } from 'react-icons/io5';
+import { FaHistory } from "react-icons/fa";
+import { BsFileCheck } from "react-icons/bs";
+import { MdOutlinePrivacyTip } from "react-icons/md";
 
 export const menu = [
   {
@@ -50,6 +52,24 @@ export const menu = [
         url: '/posts',
         icon: HiOutlineDocumentChartBar,
         label: 'posts',
+      },
+      {
+        isLink: true,
+        url: '/stories',
+        icon: FaHistory,
+        label: 'Stories',
+      },
+      {
+        isLink: true,
+        url: '/terms',
+        icon: BsFileCheck,
+        label: 'Terms',
+      },
+      {
+        isLink: true,
+        url: '/privacy',
+        icon: MdOutlinePrivacyTip,
+        label: 'Privacy',
       },
     ],
   },

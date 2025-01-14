@@ -47,7 +47,10 @@ export const fetchAllPosts = async () => {
                 r['tags'] = r.taggedUserDetails;
                 delete r['_id'];
             })
-            return res.data.posts;
+          
+            return res.data.posts.filter((r: any)=>{
+                return r.postType !== 'story'
+            });
         })
         .catch((err) => {
             console.log(err);
@@ -55,6 +58,30 @@ export const fetchAllPosts = async () => {
         });
 
     return response;
+};
+
+
+export const fetchAllStories = async () => {
+  const response = await axiosInstance
+      .get('admin/posts/list?limit=100')
+      .then((res) => {
+          res.data.posts.map((r: any)=>{
+              r['id'] = r['_id'];
+              r['visibility'] = 'Public';
+              r['tags'] = r.taggedUserDetails;
+              delete r['_id'];
+          })
+        
+          return res.data.posts.filter((r: any)=>{
+              return r.postType === 'story'
+          });
+      })
+      .catch((err) => {
+          console.log(err);
+          throw err;
+      });
+
+  return response;
 };
 
 
