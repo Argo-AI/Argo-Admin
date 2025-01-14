@@ -56,7 +56,7 @@ const Terms = () => {
       <div className="p-6 max-w-4xl mx-auto">
         <Editor
           value={content}
-          apiKey="uu2807a0b8cv6oslym95g0d323jspbfwjgguwt2fvd4i08fi"
+          apiKey="xkd0c5tsvrkuovvczo1o9r9afdg6o8nisa84hukv1m4dtcio"
           onEditorChange={(newContent) => setContent(newContent)}
           init={{
             height: 500,
