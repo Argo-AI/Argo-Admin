@@ -6,7 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import AddData from '../components/AddData';
 import {FcCheckmark} from "react-icons/fc";
-import {FaTimes} from "react-icons/fa";
+import {FaTimes, FaLock, FaLockOpen} from "react-icons/fa";
 import axiosInstance, {IMAGE_BASE_URL} from "../api/axiosInstance";
 
 const Users = () => {
@@ -21,8 +21,8 @@ const Users = () => {
     { field: 'id', headerName: 'ID', width: 90 },
     {
       field: 'first_name',
-      headerName: 'Name',
-      minWidth: 220,
+      headerName: 'Profile',
+      minWidth: 150,
       flex: 1,
       renderCell: (params) => {
         return (
@@ -39,7 +39,7 @@ const Users = () => {
               </div>
             </div>
             <span className="mb-0 pb-0 leading-none">
-              {params.row.first_name} {params.row.last_name}
+              {params.row.firstName}
             </span>
           </div>
         );
@@ -51,6 +51,22 @@ const Users = () => {
       headerName: 'User Name',
       minWidth: 200,
       flex: 1,
+    },
+    {
+      field: 'privacy',
+      type: 'string',
+      headerName: 'Visibility',
+      minWidth: 120,
+      flex: 1,
+      renderCell: (params) => {
+        return (
+          <div className="flex gap-3 items-center">
+            <span className="mb-0 pb-0 leading-none">
+              {params.row.privacy  ? <FaLock /> : <FaLockOpen />}
+            </span>
+          </div>
+        );
+      },
     },
     {
       field: 'email',
