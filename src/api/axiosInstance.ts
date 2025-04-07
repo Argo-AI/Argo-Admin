@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 //
-export const BASEURL = 'https://test.api.yourargo.com:3000';
-export const IMAGE_BASE_URL = 'https://storage.googleapis.com/qq_argo_test_bucket/';
+export const BASEURL = process.env.REACT_APP_BASE_URL!;
+export const IMAGE_BASE_URL = process.env.REACT_APP_IMAGE_BASE_URL!;;
 
 const service = axios.create({
   baseURL: BASEURL,
