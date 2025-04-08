@@ -1,17 +1,17 @@
 FROM node:20-alpine AS builder
 
 
-# Define build-time arguments
-ARG REACT_APP_BASE_API_URL
-ARG REACT_APP_IMAGE_BASE_URL
+# Accept build args
+ARG VITE_APP_BASE_API_URL
+ARG VITE_APP_IMAGE_BASE_URL
 
-# Set them as environment variables so React can access them
-ENV REACT_APP_BASE_API_URL=$REACT_APP_BASE_API_URL
-ENV REACT_APP_IMAGE_BASE_URL=$REACT_APP_IMAGE_BASE_URL
+# Set them as environment variables so Vite can pick them up
+ENV VITE_APP_BASE_API_URL=$VITE_APP_BASE_API_URL
+ENV VITE_APP_IMAGE_BASE_URL=$VITE_APP_IMAGE_BASE_URL
 
 # Echo for debug
-RUN echo "BASE URL: $REACT_APP_BASE_API_URL" && \
-    echo "IMAGE URL: $REACT_APP_IMAGE_BASE_URL"
+RUN echo "BASE URL: $VITE_APP_BASE_API_URL" && \
+    echo "IMAGE URL: $VITE_APP_IMAGE_BASE_URL"
 
 WORKDIR /app
 
