@@ -3,7 +3,6 @@ import axios from 'axios';
 export const BASEURL = 'https://test.api.justvyb.com';
 export const IMAGE_BASE_URL = 'https://assetargo.com/';
 
-
 const service = axios.create({
   baseURL: BASEURL,
   timeout: 1000000
