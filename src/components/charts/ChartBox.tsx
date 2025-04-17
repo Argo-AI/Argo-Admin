@@ -1,5 +1,4 @@
 import React from 'react';
-import toast from 'react-hot-toast';
 import { IconType } from 'react-icons';
 import {
   LineChart,
