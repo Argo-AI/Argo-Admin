@@ -64,9 +64,9 @@ const Navbar = () => {
                 to={'/'}
                 className="flex items-center gap-1 xl:gap-2 mt-1 mb-5"
               >
-                <img src={"Argo.png"} className={'w-[50px]'} />
+                <img src={"https://z4yuow5eef.ufs.sh/f/NUCcwkouEy5SB64UlIfw1btWfSBu78ZMo4YgaQJlKV2iRepT"} className={'w-[50px]'} />
                 <span className="text-[16px] leading-[1.2] sm:text-lg xl:text-xl 2xl:text-2xl font-semibold text-base-content dark:text-neutral-200">
-                  Argo
+                  Vyb
                 </span>
               </Link>
               {menu.map((item, index) => (
@@ -83,9 +83,9 @@ const Navbar = () => {
 
         {/* navbar logo */}
         <Link to={'/'} className="flex items-center gap-1 xl:gap-2">
-          <img src={"Argo.png"} className={'w-[50px]'} />
+          <img src={"https://z4yuow5eef.ufs.sh/f/NUCcwkouEy5SB64UlIfw1btWfSBu78ZMo4YgaQJlKV2iRepT"} className={'w-[50px]'} />
           <span className="text-[16px] leading-[1.2] sm:text-lg xl:text-xl 2xl:text-2xl font-semibold text-base-content dark:text-neutral-200">
-                  Argo
+                  Vyb
                 </span>
         </Link>
       </div>
