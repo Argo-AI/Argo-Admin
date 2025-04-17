@@ -97,16 +97,6 @@ const ChartBox: React.FC<ChartBoxProps> = ({
             <span className="font-bold text-xl xl:text-2xl 2xl:text-3xl 3xl:text-4xl m-0 p-0">
               {number}
             </span>
-            <button
-              onClick={() =>
-                toast('Ngapain?', {
-                  icon: '😋',
-                })
-              }
-              className="px-0 py-0 min-h-0 max-h-5 btn btn-link font-medium text-base-content no-underline m-0"
-            >
-              View All
-            </button>
           </div>
           <div className="flex h-full grow flex-col justify-between items-end">
             <div className="w-full h-full xl:h-[60%]">
