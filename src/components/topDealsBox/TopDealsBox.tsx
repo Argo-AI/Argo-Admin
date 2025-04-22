@@ -1,5 +1,4 @@
 // import React from 'react'
-import toast from 'react-hot-toast';
 // import { topDealUsers } from './data';
 import { useQuery } from '@tanstack/react-query';
 import {fetchAllPosts} from '../../api/ApiCollection';
@@ -43,7 +42,9 @@ const TopDealsBox = () => {
         {isSuccess &&
           data.splice(0, 15).filter((d)=> d.likes > 0).map((user, index: number) => (
             <button
-              onClick={() => toast('Gabisa!', { icon: '😠' })}
+              onClick={() => {
+                
+              }}
               key={index}
               className="w-full flex justify-between items-center h-auto btn btn-ghost px-1 py-2"
             >

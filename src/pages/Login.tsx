@@ -27,10 +27,10 @@ const Login = () => {
                 <div
                     className="w-full h-screen xl:h-auto xl:w-[30%] 2xl:w-[25%] 3xl:w-[20%] bg-base-100 rounded-lg shadow-md flex flex-col items-center p-5 pb-7 gap-8 pt-20 xl:pt-7">
                     <div className="flex items-center gap-1 xl:gap-2">
-                        <img src={'Argo.png'} className={'w-[50px]'}/>
+                        <img src={'https://z4yuow5eef.ufs.sh/f/NUCcwkouEy5SB64UlIfw1btWfSBu78ZMo4YgaQJlKV2iRepT'} className={'w-[50px]'}/>
                     </div>
                     <span className="xl:text-xl font-semibold">
-                ARGO AI
+                Vyb
           </span>
                     <span className="xl:text-xl font-semibold">
             Hello, 👋 Welcome Back!

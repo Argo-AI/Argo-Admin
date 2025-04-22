@@ -8,6 +8,7 @@ import {fetchAllPosts} from '../api/ApiCollection';
 import {
   HiOutlineGlobeAmericas,
   HiOutlineLockClosed,
+  HiLink
 } from 'react-icons/hi2';
 import axiosInstance, {IMAGE_BASE_URL} from "../api/axiosInstance";
 import {FcCheckmark} from "react-icons/fc";
@@ -153,6 +154,38 @@ const Posts = () => {
           );
         } else {
           return <span>Unknown</span>;
+        }
+      },
+    },
+    {
+      field: 'links',
+      headerName: 'Links',
+      minWidth: 90,
+      flex: 1,
+      renderCell: (params) => {
+        if (params.row.links && params.row.links.length > 0) {
+          return (
+            <div className="flex flex-wrap gap-2">
+              {params.row.links.map((link: any, index: number) => (
+                <React.Fragment key={index}>
+                  {index > 0 && <span>,</span>}
+                  <div className="flex gap-1 items-center">
+                    <HiLink className="text-lg" />
+                    <a 
+                      href={link?.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="p-0 mt-[1px] leading-none text-blue-600 hover:text-blue-800 hover:underline"
+                    >
+                      {link?.text}
+                    </a>
+                  </div>
+                </React.Fragment>
+              ))}
+            </div>
+          );
+        } else {
+          return <span>No Link</span>;
         }
       },
     },
