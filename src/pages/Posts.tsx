@@ -215,6 +215,7 @@ const Posts = () => {
             if(confirm('Are you sure you want to delete this post?')){
               axiosInstance.delete(`/posts/${params.row.id}`)
               .then((res)=>{
+                console.log(res);
                 toast('Post deleted successfully!');
                 setTimeout(()=>{
                   location.reload();
