@@ -12,7 +12,7 @@ import {
 } from 'react-icons/hi2';
 import axiosInstance, {IMAGE_BASE_URL} from "../api/axiosInstance";
 import {FcCheckmark} from "react-icons/fc";
-import {FaTimes} from "react-icons/fa";
+import {FaTimes, FaTrash} from "react-icons/fa";
 
 const Posts = () => {
   // const [isOpen, setIsOpen] = React.useState(false);
@@ -201,6 +201,38 @@ const Posts = () => {
               {new Date(params.row.createdAt).toUTCString()}
             </span>
             </div>
+        );
+      },
+    },
+    {
+      field: 'actions',
+      headerName: 'Actions',
+      minWidth: 120,
+      renderCell: (params) => {
+        return (
+          <div 
+          onClick={()=>{
+            if(confirm('Are you sure you want to delete this post?')){
+              axiosInstance.delete(`/posts/${params.row.id}`)
+              .then((res)=>{
+                toast('Post deleted successfully!');
+                setTimeout(()=>{
+                  location.reload();
+                },1000);
+              })
+              .catch((err)=>{
+                toast(err?.message);
+              })
+            }
+          }}
+          className="flex gap-3 items-center cursor-pointer">
+            <span className="mb-0 pb-0 leading-none">
+            <FaTrash 
+            size={15}
+            color="red"
+            />
+          </span>
+          </div>
         );
       },
     },
