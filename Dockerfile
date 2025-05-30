@@ -1,5 +1,19 @@
 FROM node:20-alpine AS builder
 
+
+# Accept build args
+ARG VITE_APP_BASE_API_URL
+ARG VITE_APP_IMAGE_BASE_URL
+
+# Set them as environment variables so Vite can pick them up
+ENV VITE_APP_BASE_API_URL=$VITE_APP_BASE_API_URL
+ENV VITE_APP_IMAGE_BASE_URL=$VITE_APP_IMAGE_BASE_URL
+
+# Echo for debug
+RUN echo "BASE URL: $VITE_APP_BASE_API_URL" && \
+    echo "IMAGE URL: $VITE_APP_IMAGE_BASE_URL"
+
+
 WORKDIR /app
 
 # Install dependencies

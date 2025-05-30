@@ -1,3 +1,6 @@
+console.log("API URL:", import.meta.env.VITE_APP_BASE_API_URL);
+console.log("IMAGE URL:", import.meta.env.VITE_APP_IMAGE_BASE_URL);
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
